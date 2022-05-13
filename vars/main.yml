@@ -1,0 +1,18 @@
+---
+# vars file for aws-module
+aws_access_key: 'AKIAZJOCRH4UJVRC6QOR'
+aws_secret_key: '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'
+key_name: 'faasd'
+vpc_title: 'faasd'
+vpc_name: "{{ vpc_title }}-VPC"
+igw_name: "{{ vpc_title }}-IGW"
+subnet_name: "{{ vpc_title }}-Subnet"
+security_group_name: "{{ vpc_title }}-Security Group"
+route_table_name: "{{ vpc_title }}-route table"
+vpcCidrBlock: '10.0.0.0/16'
+subNetCidrBlock: '10.0.1.0/24'
+allow_all: '0.0.0.0/0'
+state: 'present'
+zone: 'us-east-1a'
+region: 'us-east-1'
+user_data: "{{ lookup('file', './files/user-data.sh') }}"

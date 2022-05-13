@@ -1,0 +1,18 @@
+---
+# instance.yml
+- name: Create EC2 server
+  amazon.aws.ec2:
+    assign_public_ip: yes
+    image: ami-0c4f7023847b90238
+    wait: yes
+    instance_type: t2.micro
+    region: "{{ region }}"
+    group_id: "{{ security_group_result.group_id }}"
+    vpc_subnet_id: "{{ subnet_result.subnet.id }}"
+    user_data: "{{ user_data }}"
+    key_name: "{{ keypair.key.name  }}"
+    count: 1
+    state: "{{ state }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    

@@ -1,0 +1,7 @@
+---
+# tasks file for aws-module
+
+- include: key-pair.yml
+- include: vpc.yml
+- include: security-group.yml
+- include: instance.yml

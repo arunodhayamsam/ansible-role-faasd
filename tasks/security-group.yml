@@ -1,0 +1,24 @@
+---
+# security-group.yml
+- name: create ec2 security group
+  ec2_group:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
+    region: "{{ region }}"
+    state: "{{ state }}"
+    name: "{{ security_group_name }}"
+    description: Allow SSH and TCP
+    tags:
+      Name: "{{ security_group_name  }}"
+    rules:
+    - proto: tcp
+      ports:
+      - 22
+      cidr_ip: "{{ allow_all }}"
+      rule_desc: allow all on port 22
+    - proto: tcp
+      from_port: 8080
+      to_port: 8080
+      cidr_ip: "{{ allow_all }}"  
+  register: security_group_result
